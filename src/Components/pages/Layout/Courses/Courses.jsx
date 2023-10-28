@@ -9,10 +9,12 @@ const Courses = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect( () => {
-        fetch('course.json')
+        fetch('https://edumall-server-ju560qe31-amirhamza24.vercel.app/classes/approveClass')
         .then(res => res.json())
         .then(data => setCourses(data))
     }, [])
+
+    const topCourses = courses.slice(0, 8);
 
     return (
         <div className='montserrat-font'>
@@ -34,7 +36,7 @@ const Courses = () => {
 
                 <div className='grid grid-cols-4 gap-8 pt-16'>
                     {
-                        courses.map(course => <AllCourses
+                        topCourses.map(course => <AllCourses
                             key={course._id}
                             course={course}
                         ></AllCourses>)
